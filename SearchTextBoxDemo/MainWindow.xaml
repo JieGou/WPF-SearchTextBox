@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:SearchTextBoxDemo"
         xmlns:searchTextBox="clr-namespace:SearchTextBox;assembly=SearchTextBox"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight">
+        Title="MainWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate x:Key="PromptTemplate">
+            <TextBlock Text="搜索关键词" Foreground="Gray" FontStyle="Italic" />
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        <searchTextBox:SearchTextBox Width="200" Height="22" Prompt="请搜索关键词" />
+        <searchTextBox:SearchTextBox Width="200" Height="22" PromptTemplate="{StaticResource PromptTemplate}" ToolTip="搜索" />
     </Grid>
 </Window>

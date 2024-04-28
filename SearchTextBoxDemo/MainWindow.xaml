@@ -1,18 +1,32 @@
-﻿<Window x:Class="SearchTextBoxDemo.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SearchTextBoxDemo"
-        xmlns:searchTextBox="clr-namespace:SearchTextBox;assembly=SearchTextBox"
-        mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+﻿<Window
+    x:Class="SearchTextBoxDemo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SearchTextBoxDemo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:searchTextBox="clr-namespace:SearchTextBox;assembly=SearchTextBox"
+    Title="MainWindow"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Window.Resources>
         <DataTemplate x:Key="PromptTemplate">
-            <TextBlock Text="搜索关键词" Foreground="Gray" FontStyle="Italic" />
+            <TextBlock
+                FontStyle="Italic"
+                Foreground="Gray"
+                Text="搜索关键词" />
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <searchTextBox:SearchTextBox Width="200" Height="22" PromptTemplate="{StaticResource PromptTemplate}" ToolTip="搜索" />
+        <searchTextBox:SearchTextBox
+            Width="200"
+            Height="22" Text="{Binding SearchText,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+            PromptTemplate="{StaticResource PromptTemplate}"
+            ToolTip="搜索">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding AddCommand}" />
+            </TextBox.InputBindings>
+        </searchTextBox:SearchTextBox>
     </Grid>
 </Window>
